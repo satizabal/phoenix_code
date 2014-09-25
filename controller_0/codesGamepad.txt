@@ -1,0 +1,51 @@
+This file summarizes the mapping of the gamepad in Linux ans Windows
+
+TestControllers.class is useful to find the location of the controller in the vector of controllers
+TestComponents.class is useful to find the mapping shown here
+
+Linux
+Vector_pos	Button_mode1		Button_mode2
+0			D1				or	D1
+1			D2				or	D2
+2			D3				or	D3
+3			D4				or	D4
+4			D5				or	D5
+5			D6				or	D6
+6			D7				or	D7
+7			D8				or	D8
+8			D9				or	D9
+9			D10				or	D10
+10			-				or	-
+11			-				or	-
+12			A1_LEFT/RIGHT	or	D_LEFT/RIGHT
+13			A1_UP/DOWN		or	D_UP/DOWN
+14			A2_LEFT/RIGHT	or	A2_LEFT/RIGHT
+15			A2_UP/DOWN		or	A2_UP/DOWN
+16			D_UP	+0.25	or	A1_UP		+0.25
+			D_DOWN	+0.75	or	A1_DOWN		+0.75
+			D_LEFT	+0.5	or	A1_LEFT		+0.5	
+			D_RIGHT	+1		or	A1_RIGHT	+1
+			
+			
+Windows
+Vector_pos	Button_mode1		Button_mode2
+0			A2_UP/DOWN		or	A2_UP/DOWN
+1			A2_LEFT/RIGHT	or	A2_LEFT/RIGHT
+2			A1_UP/DOWN		or	D_UP/DOWN
+3			A1_LEFT/RIGHT	or	D_LEFT/RIGHT
+4			D_UP	+0.25	or	A1_UP		+0.25
+			D_DOWN	+0.75	or	A1_DOWN		+0.75
+			D_LEFT	+1		or	A1_LEFT		+1
+			D_RIGHT	+0.5	or	A1_RIGHT	+0.5
+5			D1				or	D1
+6			D2				or	D2
+7			D3				or	D3
+8			D4				or	D4
+9			D5				or	D5
+10			D6				or	D6
+11			D7				or	D7
+12			D8				or	D8
+13			D9				or	D9
+14			D10				or	D10
+15			-				or	-
+16			-				or	-

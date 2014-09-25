@@ -1,0 +1,161 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package gamepadUSB;
+
+import net.java.games.input.Component;
+import net.java.games.input.Controller;
+import net.java.games.input.ControllerEnvironment;
+
+/**
+ *
+ * @author hsatizab
+ */
+public class Controller {
+
+    public Controller() {
+    }
+    
+    public Action control(SensorModel sensors) {
+        Action action = new Action ();
+        float temp = 0;
+        
+        if (gamepadFound) {
+            gamepad.poll();
+//            action.steering = -steer.getPollData()/2;
+            action.steering = Math.pow(-steer.getPollData(), 3);
+            temp = throtleBrake.getPollData();
+            if (temp < 0.0) {
+                action.accelerate = -temp;
+            }
+            else {
+                action.brake = temp;
+            }
+            
+            if (manualAutomatic) {
+                action.gear = sensors.getGear();
+                if ((gearBoxBefore != 0.25) && (gearBox.getPollData() == 0.25)) {
+                    action.gear = Math.min(action.gear + 1, 6);
+                    System.out.println("Gear box at:" + String.valueOf(action.gear));
+                }
+                else {
+                    if ((gearBoxBefore != 0.75) && (gearBox.getPollData() == 0.75)) {
+                        action.gear = Math.max(action.gear - 1, -1);
+                        System.out.println("Gear box at:" + String.valueOf(action.gear));
+                    }
+                }
+            }
+            else {
+                action.gear = getGear(sensors);
+            }
+            gearBoxBefore = gearBox.getPollData();
+        
+            if ((!manualAutomatic) && (enableManual.getPollData() > 0)) {
+                manualAutomatic = true;
+                System.out.println("Manual gear box enabled.");
+            }
+            if (manualAutomatic && (enableAutomatic.getPollData() > 0)) {
+                manualAutomatic = false;
+                System.out.println("Automatic gear box enabled.");
+            }
+            
+            if ((!logEnabled) && (enableLog.getPollData() > 0)) {
+                logEnabled = true;
+                System.out.println("Log enabled.");
+            }
+            if (logEnabled && (disableLog.getPollData() > 0)) {
+                logEnabled = false;
+                System.out.println("Log disabled.");
+            }
+        }
+        
+        if (logOpen && logEnabled) {
+            String toSave = String.valueOf((sensors.getSpeed() / 100) + (random.nextGaussian()/100)) + "\t";
+            toSave += String.valueOf(sensors.getAngleToTrackAxis() + (random.nextGaussian()/100)) + "\t";
+            double[] dist = sensors.getTrackEdgeSensors();
+            for (int i = 0; i < dist.length; i++) {
+                toSave += String.valueOf((dist[i] / 100) + (random.nextGaussian()/100)) + "\t";
+            }
+            toSave += String.valueOf(-temp) + "\t";
+            toSave += String.valueOf(action.steering);
+            
+            try {
+                log.write(toSave);
+                log.newLine();
+            }
+            catch (IOException ioe) {
+                System.out.println("Impossible to write in log file");
+            }
+        }
+        
+        return action;
+    }
+    
+    public static void main(String[] args) {
+        ControllerEnvironment ce = ControllerEnvironment.getDefaultEnvironment();
+        Controller[] cs = ce.getControllers();
+
+        gamepadFound = false;
+        if (cs.length == 0) {
+            System.out.println("No controllers found");
+        }
+        else {
+			for (i = 0; i < cs.length; i++) {
+				System.out.println("Controller " + String.valueOf(i) + ": ");
+				System.out.println("\tName:" + cs[i].getName());
+				System.out.println("\tType:" + cs[i].getType());
+				System.out.println("\tNumber of components:" + String.valueOf(cs[i].getComponents().length));
+			}
+//            gamepad = cs[0];
+//            analogLeft = gamepad.getComponents()[analogLeftYAxis];
+//            analogRight = gamepad.getComponents()[analogRightXAxis];
+//            diitalLeft = gamepad.getComponents()[digitalLeftCross];
+//            button1 = gamepad.getComponents()[digital1];
+//            button2 = gamepad.getComponents()[digital2];
+//            button3 = gamepad.getComponents()[digital3];
+//            button4 = gamepad.getComponents()[digital4];
+//            button5 = gamepad.getComponents()[digital5];
+//            button6 = gamepad.getComponents()[digital6];
+//            button7 = gamepad.getComponents()[digital7];
+//            button8 = gamepad.getComponents()[digital8];
+//            button9 = gamepad.getComponents()[digital9];
+//            button10 = gamepad.getComponents()[digital10];
+//            gamepadFound = true;
+        }
+        
+    }
+    
+    private boolean gamepadFound;
+    private Controller gamepad;
+    private Component analogLeft;
+    private Component analogRight;
+    private Component digitalLeft;
+    private Component button1;
+    private Component button2;
+    private Component button3;
+    private Component button4;
+    private Component button5;
+    private Component button6;
+    private Component button7;
+    private Component button8;
+    private Component button9;
+    private Component button10;
+    
+    private static final int digital1 = 0;
+    private static final int digital2 = 1;
+    private static final int digital3 = 2;
+    private static final int digital4 = 3;
+    private static final int digital5 = 4;
+    private static final int digital6 = 5;
+    private static final int digital7 = 6;
+    private static final int digital8 = 7;
+    private static final int digital9 = 8;
+    private static final int digital10 = 9;
+    private static final int analogLeftXAxis = 12;
+    private static final int analogLeftYAxis = 13;
+    private static final int analogRightXAxis = 14;
+    private static final int analogRightYAxis = 15;
+    private static final int digitalLeftCross = 16;
+    
+}
