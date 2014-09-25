@@ -1,0 +1,6 @@
+cd src
+javac -d ../classes -classpath .:../JInput/jinput.jar:/usr/share/java/RXTXcomm.jar gamepadUSB/GamepadDriver.java
+
+cd classes
+java -Djava.library.path=../JInput:/usr/lib/jni -classpath .:../JInput/jinput.jar:/usr/share/java/RXTXcomm.jar gamepadUSB.GamepadDriver
+
