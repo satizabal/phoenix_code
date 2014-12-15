@@ -53,30 +53,30 @@ public class GamepadDriver implements SerialPortEventListener {
                 controllerFound = true;
                 
 //----------Find the components number-------------------------------------------------------------
-//			    try {
-//				    gamepad = cs[controllerNumber];
-//				    Component[] components = new Component[gamepad.getComponents().length];
-//				    System.out.println("Number of components:" + String.valueOf(components.length));
-//				    for (int i = 0; i < components.length; i++) {
-//					    components[i] = gamepad.getComponents()[i];
-//				    }
-//				    while (true) {
-//					    gamepad.poll();
-//					
-//					    for (int i = 0; i < components.length; i++) {
-//						    System.out.print("  C" + String.valueOf(i) + ":" + String.format("%.2f", components[i].getPollData()));
-//					    }
-//					    System.out.println();
-//				    }
-//			    }
-//			    catch(NumberFormatException nfe) {
-//				    System.out.println("Not a valid controller number!");
-//                    controllerFound = false;
-//			    }
-//			    catch(ArrayIndexOutOfBoundsException aiobe) {
-//				    System.out.println("Not a valid controller number!");
-//                    controllerFound = false;
-//			    }
+/*			    try {
+				    gamepad = cs[controllerNumber];
+				    Component[] components = new Component[gamepad.getComponents().length];
+				    System.out.println("Number of components:" + String.valueOf(components.length));
+				    for (int i = 0; i < components.length; i++) {
+					    components[i] = gamepad.getComponents()[i];
+				    }
+				    while (true) {
+					    gamepad.poll();
+					
+					    for (int i = 0; i < components.length; i++) {
+						    System.out.print("  C" + String.valueOf(i) + ":" + String.format("%.2f", components[i].getPollData()));
+					    }
+					    System.out.println();
+				    }
+			    }
+			    catch(NumberFormatException nfe) {
+				    System.out.println("Not a valid controller number!");
+                    controllerFound = false;
+			    }
+			    catch(ArrayIndexOutOfBoundsException aiobe) {
+				    System.out.println("Not a valid controller number!");
+                    controllerFound = false;
+			    }*/
 //-------------------------------------------------------------------------------------------------
 			
                 gamepad = cs[controllerNumber];
@@ -230,12 +230,12 @@ public class GamepadDriver implements SerialPortEventListener {
                                 break;
                         }
                     }
-//                    System.out.printf("Sending.... %d:%s - AL: %4d,%4d - AR: %4d,%4d - B:%s,%s\n",
-//                                      toSend.length, Arrays.toString(toSend),
-//                                      toSend[2] ,toSend[3],
-//                                      toSend[0] ,toSend[1],
-//                                      String.format("%8s", Integer.toBinaryString(toSend[4] & 0x00FF)).replace(' ', '0'),
-//                                      String.format("%8s", Integer.toBinaryString(toSend[5] & 0x00FF)).replace(' ', '0'));
+/*                    System.out.printf("Sending.... %d:%s - AL: %4d,%4d - AR: %4d,%4d - B:%s,%s\n",
+                                      toSend.length, Arrays.toString(toSend),
+                                      toSend[2] ,toSend[3],
+                                      toSend[0] ,toSend[1],
+                                      String.format("%8s", Integer.toBinaryString(toSend[4] & 0x00FF)).replace(' ', '0'),
+                                      String.format("%8s", Integer.toBinaryString(toSend[5] & 0x00FF)).replace(' ', '0'));*/
                     output.write(toSend);
                 }
 			}

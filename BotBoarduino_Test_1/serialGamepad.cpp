@@ -27,8 +27,8 @@ void SerialGamepad::read_gamepad() {
     }
     ch[i] = temp & 0x00FF;
   }
-//  Serial.write(ch, 6);
-//  Serial.println();
+  //Serial.write(ch, 6);
+  //Serial.println();
 
   if (dataAvailable) {
     analogs[0]  = ch[0];

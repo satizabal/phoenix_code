@@ -340,7 +340,7 @@ void setup(){
     
     //Body Positions
     g_InControlState.BodyPos.x = 0;
-    g_InControlState.BodyPos.y = 40;
+    g_InControlState.BodyPos.y = 10;
     g_InControlState.BodyPos.z = 0;
         
     //Body Rotations

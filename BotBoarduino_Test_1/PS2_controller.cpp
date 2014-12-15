@@ -124,7 +124,8 @@ void InputController::Init(void)
     //error = ps2x.config_gamepad(57, 55, 56, 54);  // Setup gamepad (clock, command, attention, data) pins
     //error = ps2x.config_gamepad(PS2_CLK, PS2_CMD, PS2_SEL, PS2_DAT);  // Setup gamepad (clock, command, attention, data) pins
 
-    g_BodyYOffset = 65;  // 0 - Devon wanted...
+//    g_BodyYOffset = 45;  // 0 - Devon wanted...
+    g_BodyYOffset = 10;  // 0 - Devon wanted...
     g_BodyYShift = 0;
     g_sPS2ErrorCnt = 0;  // error count
 
