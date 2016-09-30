@@ -35,7 +35,7 @@
 #define PSS_LX 7
 #define PSS_LY 8
 
-#define TIMESTAMP 100
+#define TIMEOUT 50
 
 class SerialGamepad {
   public:
@@ -44,12 +44,14 @@ class SerialGamepad {
     void read_gamepad();
     byte Analog(byte);
     void printMessage(char[]);
+    void resetValues();
 
   private:
     byte analogs[4];
     boolean buttons[16];
     boolean debug;
-    boolean dataAvailable;
+    boolean askForData;
+    int timeCounter;
     
 };
 

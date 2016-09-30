@@ -8,7 +8,7 @@ SerialGamepad::SerialGamepad() {
   for (i = 0; i < 16; i++) {
     buttons[i] = false;
   }
-  dataAvailable = false;
+  dataAvailable = true;
   debug = false;
 }
 

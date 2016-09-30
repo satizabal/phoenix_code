@@ -230,13 +230,14 @@ public class GamepadDriver implements SerialPortEventListener {
                                 break;
                         }
                     }
-/*                    System.out.printf("Sending.... %d:%s - AL: %4d,%4d - AR: %4d,%4d - B:%s,%s\n",
+                    System.out.printf("Sending.... %d:%s - AL: %4d,%4d - AR: %4d,%4d - B:%s,%s\n",
                                       toSend.length, Arrays.toString(toSend),
                                       toSend[2] ,toSend[3],
                                       toSend[0] ,toSend[1],
                                       String.format("%8s", Integer.toBinaryString(toSend[4] & 0x00FF)).replace(' ', '0'),
-                                      String.format("%8s", Integer.toBinaryString(toSend[5] & 0x00FF)).replace(' ', '0'));*/
+                                      String.format("%8s", Integer.toBinaryString(toSend[5] & 0x00FF)).replace(' ', '0'));
                     output.write(toSend);
+                    output.flush();
                 }
 			}
 			catch (Exception e) {
